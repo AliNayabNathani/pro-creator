@@ -1,0 +1,98 @@
+/* Job card container */
+.job-card {
+  position: relative; /* Add this line */
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+/* Job header with avatar and details */
+.job-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Avatar */
+.avatar {
+  width: 15px;
+  height: 15px;
+  margin-right: 16px;
+  border-radius: 100%;
+}
+
+/* Job details */
+.job-details {
+  flex: 1;
+  font-family: monospace;
+}
+
+/* Job title */
+.job-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* Job metadata (location, job type, salary range) */
+.job-metadata {
+  margin-top: 8px;
+}
+
+.with-bullet::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #f07837;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+.space-between {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+/* Individual metadata item */
+.metadata-item {
+  display: inline-block;
+  margin-right: 4rem;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+/* Accordion icon */
+.accordion-icon {
+  margin-left: auto;
+}
+
+/* Accordion panel content */
+[aria-expanded='false'] .chakra-accordion__panel {
+  display: none !important;
+}
+
+.time-posted {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.hideOnMobile {
+  display: none;
+}
+
+@media screen and (min-width: 1281px) {
+  .hideOnMobile {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-view {
+    display: none !important;
+  }
+  .hideOnMobile {
+    display: none;
+  }
+}
