@@ -4,6 +4,7 @@ import {
   Button,
   Container,
   FormLabel,
+  Icon,
   IconButton,
   Input,
   InputGroup,
@@ -29,6 +30,8 @@ import TextComp from './TextComp';
 import ElementsComp from './ElementsComp';
 import BrandingComp from './BrandingComp';
 import posterVideoEdit from '../../Assests/images/videoPoster.png';
+import { ReactComponent as SliderIcon } from '../../Assests/icon/slider-horizontal.svg';
+
 const VideoEdit = () => {
   const dummyButtonData = ['16:9', '9:16', '1:1'];
   const [selectedOrientation, setSelectedOrientation] = useState(null);
@@ -85,6 +88,7 @@ const VideoEdit = () => {
               spacing={2}
               direction={'row'}
               justifyContent={'space-between'}
+              alignItems={'center'}
             >
               <IconButton
                 icon={<AiOutlineScissor />}
@@ -93,20 +97,26 @@ const VideoEdit = () => {
                 bg={'#FF5757'}
                 color={'white'}
               />
-              <IconButton
-                icon={<BiFontSize />}
-                aria-label="Change Font Size"
+              <Icon
+                as={SliderIcon}
+                bg={'white'}
+                boxSize={12}
                 borderRadius={'full'}
+                padding={2}
               />
-              <IconButton
-                icon={<BiFontSize />}
-                aria-label="Change Font Size"
+              <Icon
+                as={SliderIcon}
+                bg={'white'}
+                boxSize={12}
                 borderRadius={'full'}
+                padding={2}
               />
-              <IconButton
-                icon={<BiFontSize />}
-                aria-label="Change Font Size"
+              <Icon
+                as={SliderIcon}
+                bg={'white'}
+                boxSize={12}
                 borderRadius={'full'}
+                padding={2}
               />
             </Stack>
             <Stack
