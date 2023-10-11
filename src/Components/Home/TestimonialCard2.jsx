@@ -17,11 +17,11 @@ const TestimonialCard = ({ name, content, date, avatar }) => {
   return (
     <Box
       bg="white"
-      p={4}
+      p={[4, 4]}
       my={[4, 8]}
       alignItems={['center', 'flex-start']}
-      maxH={'250px'}
-      maxW={'400px'}
+      maxH={['auto', '250px']}
+      maxW={['auto', '400px']}
       justifyItems={'center'}
       textAlign={['center', 'center']}
       borderRadius={'lg'}
@@ -37,7 +37,7 @@ const TestimonialCard = ({ name, content, date, avatar }) => {
         </VStack>
       </Stack>
 
-      <Text fontSize="sm" mt={4} color="gray.700">
+      <Text fontSize="sm" mt={[2, 4]} color="gray.700">
         {content}
       </Text>
     </Box>

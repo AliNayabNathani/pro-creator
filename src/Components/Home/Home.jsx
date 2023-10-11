@@ -13,8 +13,6 @@ import {
   AccordionPanel,
   AccordionIcon,
   Avatar,
-  HStack,
-  VStack,
   Text,
   Button,
 } from '@chakra-ui/react';
@@ -25,11 +23,6 @@ import home2 from '../../Assests/images/homepageimg.png';
 import bgImageTop from '../../Assests/background.png';
 import bgImageTop1 from '../../Assests/images/bg.png';
 import bgImageTop2 from '../../Assests/images/bgTop2.png';
-import partnership1 from '../../Assests/images/image 28.png';
-import partnership2 from '../../Assests/images/image 29.png';
-import partnership3 from '../../Assests/images/image 30.png';
-import partnership4 from '../../Assests/images/image 31.png';
-import partnership5 from '../../Assests/images/image 32.png';
 import video1Cover from '../../Assests/images/p1.png';
 import video2Cover from '../../Assests/images/p2.png';
 import video3Cover from '../../Assests/images/p3.png';
@@ -40,6 +33,7 @@ import textIcon from '../../Assests/icon/text.svg';
 import scriptIcon from '../../Assests/icon/script.svg';
 import HomeHeader from './HomeHeader/HomeHeader';
 import v1 from '../../Assests/v1.mp4';
+import SponsorCard from '../CommonComponents/SponsorCard';
 const Home = () => {
   const videoUrls = [
     {
@@ -249,27 +243,7 @@ const Home = () => {
           <AnotherTestimonialGrid />
         </Stack>
       </Container>
-      <Stack
-        justifyContent={['center', 'space-between']}
-        w={'100%'}
-        // my={[4, 20]}
-        p={20}
-        bg={'#F7F7F8'}
-        h={'100%'}
-      >
-        <Heading textAlign={['center', 'left']}>In Partnership With</Heading>
-        <Stack
-          direction={['column', 'row']}
-          justifyContent={'space-evenly'}
-          mt={[2, 4]}
-        >
-          <Image src={partnership1} />
-          <Image src={partnership2} />
-          <Image src={partnership3} />
-          <Image src={partnership4} />
-          <Image src={partnership5} />
-        </Stack>
-      </Stack>
+      <SponsorCard />
     </>
   );
 };

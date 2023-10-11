@@ -35,11 +35,15 @@ export default function Footer() {
         alignItems={'center'}
         justifyContent={'space-between'}
       >
-        <Stack w={['100%', '50%']}>
-          <Image src={footerLogo} h={['auto', '50px']} w={['auto', '383px']} />
+        <Stack w={['100%', '50%']} alignItems={['center', 'flex-start']}>
+          <Image src={footerLogo} h={['80%', '50px']} w={['80%', '383px']} />
         </Stack>
         <Stack w={['100%', '30%']} alignItems={'center'}>
-          <Text opacity={'50%'} fontWeight={'light'}>
+          <Text
+            opacity={'50%'}
+            fontWeight={'light'}
+            textAlign={['center', 'left']}
+          >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt
           </Text>

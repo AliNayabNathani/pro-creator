@@ -19,11 +19,6 @@ import {
 } from '@chakra-ui/react';
 import { MdCheckCircle } from 'react-icons/md';
 import '../../Utils/fonts.css';
-import partnership1 from '../../Assests/images/image 28.png';
-import partnership2 from '../../Assests/images/image 29.png';
-import partnership3 from '../../Assests/images/image 30.png';
-import partnership4 from '../../Assests/images/image 31.png';
-import partnership5 from '../../Assests/images/image 32.png';
 import scriptBg from '../../Assests/images/script bg.png';
 import centerContent from '../../Assests/images/center content 1.png';
 import ReactPlayer from 'react-player';
@@ -36,6 +31,7 @@ import video1Cover from '../../Assests/images/p1.png';
 import video2Cover from '../../Assests/images/p2.png';
 import video3Cover from '../../Assests/images/p3.png';
 import video4Cover from '../../Assests/images/p4.png';
+import SponsorCard from '../CommonComponents/SponsorCard';
 const ShortVideoFeatures = () => {
   const videoUrls = [
     {
@@ -274,27 +270,7 @@ const ShortVideoFeatures = () => {
           <Image src={whatisprocreator} mt={[4, 8]} />
         </Stack>
       </Container>
-      <Stack
-        justifyContent={['center', 'space-between']}
-        w={'100%'}
-        // my={[4, 20]}
-        p={20}
-        bg={'#F7F7F8'}
-        h={'100%'}
-      >
-        <Heading textAlign={['center', 'left']}>In Partnership With</Heading>
-        <Stack
-          direction={['column', 'row']}
-          justifyContent={'space-evenly'}
-          mt={[2, 4]}
-        >
-          <Image src={partnership1} />
-          <Image src={partnership2} />
-          <Image src={partnership3} />
-          <Image src={partnership4} />
-          <Image src={partnership5} />
-        </Stack>
-      </Stack>
+      <SponsorCard />
     </>
   );
 };
