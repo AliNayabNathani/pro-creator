@@ -61,7 +61,10 @@ const BlogCard = () => {
   ];
 
   return (
-    <Grid templateColumns="repeat(3, 1fr)" gap={4}>
+    <Grid
+      templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }}
+      gap={4}
+    >
       {blogItems.map(item => (
         <GridItem key={item.id} colSpan={1}>
           <Box height="100%" overflow="hidden">

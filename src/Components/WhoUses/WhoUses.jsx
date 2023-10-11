@@ -222,7 +222,7 @@ const WhoUses = () => {
                 Learn More
               </Button>
             </Stack>
-            <Stack>
+            <Stack alignItems={'center'}>
               <Image src={workingImg} />
             </Stack>
           </Stack>

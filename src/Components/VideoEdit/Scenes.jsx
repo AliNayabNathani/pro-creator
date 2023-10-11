@@ -85,7 +85,7 @@ const Scenes = () => {
           {selectedButton === 'social' && <SocialComp />}
         </Stack>
 
-        <Stack direction={'row'} align="center" mt={2} w={'full'}>
+        <Stack direction={['column', 'row']} align="center" mt={2} w={'full'}>
           {selectedButton === 'caption' && (
             <>
               <Input
@@ -104,7 +104,7 @@ const Scenes = () => {
                 color={'black'}
                 border={'1px solid black'}
                 ml={2}
-                size={'lg'}
+                size={['lg', 'lg']}
               >
                 Generate Title
               </Button>

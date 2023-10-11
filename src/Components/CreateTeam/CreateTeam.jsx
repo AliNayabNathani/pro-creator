@@ -41,7 +41,7 @@ const CreateTeam = () => {
         >
           <InputGroup alignItems={'center'}>
             <InputLeftElement
-              ml={6}
+              ml={[5, 6]}
               mt={2}
               pointerEvents="none"
               color={'black'}
@@ -52,12 +52,12 @@ const CreateTeam = () => {
               placeholder="Enter Team Member Email"
               color="black"
               borderRadius="md"
-              p={6}
-              ml={8}
+              p={[6]}
+              ml={[6, 8]}
               value={teamMemberEmail}
               onChange={handleEmailChange}
             />
-            <InputRightElement width={['8rem', '8rem']}>
+            <InputRightElement width={['5rem', '8rem']}>
               <Button
                 mt={2.5}
                 bgGradient="linear(to-r, #8E2485, #F16F23)"

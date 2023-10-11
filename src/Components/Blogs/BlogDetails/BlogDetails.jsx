@@ -19,6 +19,11 @@ import {
 } from '@chakra-ui/react';
 import Rating from 'react-rating-stars-component';
 import blogImg1 from '../../../Assests/images/blogimg.png';
+import partnership1 from '../../../Assests/images/image 28.png';
+import partnership2 from '../../../Assests/images/image 29.png';
+import partnership3 from '../../../Assests/images/image 30.png';
+import partnership4 from '../../../Assests/images/image 31.png';
+import partnership5 from '../../../Assests/images/image 32.png';
 
 const BlogDetail = () => {
   const blogItem = {
@@ -84,7 +89,7 @@ const BlogDetail = () => {
               />
             </Box>
           </Stack>
-          <Stack width={'50%'}>
+          <Stack width={['100%', '50%']}>
             <Box bg={'#F5F5F5'} p={[4, 8]} borderRadius={'20px'}>
               <Heading fontSize={'5xl'} my={2}>
                 Share your thoughts
@@ -182,6 +187,17 @@ const BlogDetail = () => {
         h={'100%'}
       >
         <Heading textAlign={['center', 'left']}>In Partnership With</Heading>
+        <Stack
+          direction={['column', 'row']}
+          justifyContent={'space-evenly'}
+          mt={[2, 4]}
+        >
+          <Image src={partnership1} />
+          <Image src={partnership2} />
+          <Image src={partnership3} />
+          <Image src={partnership4} />
+          <Image src={partnership5} />
+        </Stack>
       </Stack>
     </>
   );

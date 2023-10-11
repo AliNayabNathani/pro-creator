@@ -15,6 +15,11 @@ import BlogCard from './BlogCard';
 import speakerIcon from '../../Assests/images/speaker.png';
 import mediaIcon from '../../Assests/images/video.png';
 import './Blogs.css';
+import partnership1 from '../../Assests/images/image 28.png';
+import partnership2 from '../../Assests/images/image 29.png';
+import partnership3 from '../../Assests/images/image 30.png';
+import partnership4 from '../../Assests/images/image 31.png';
+import partnership5 from '../../Assests/images/image 32.png';
 
 const Blogs = () => {
   const blogCategories = [
@@ -35,7 +40,9 @@ const Blogs = () => {
         >
           <Image src={mediaIcon} className="hideOnMobile" />
           <VStack>
-            <Heading textAlign={['center', 'center']}>Blogs</Heading>
+            <Heading textAlign={['center', 'center']} fontSize={['5xl', '7xl']}>
+              Blogs
+            </Heading>
             <Text
               fontWeight={'semibold'}
               fontSize={'lg'}
@@ -46,8 +53,11 @@ const Blogs = () => {
           </VStack>{' '}
           <Image src={speakerIcon} className="hideOnMobile" />
         </Stack>
-        <Stack mt={[4, 8]}>
-          <Grid templateColumns="repeat(5, 1fr)" gap={[2, 4]}>
+        <Stack mt={[4, 8]} alignItems={'center'}>
+          <Grid
+            templateColumns={{ base: 'repeat(2, 1fr)', md: 'repeat(5, 1fr)' }}
+            gap={[4, 4]}
+          >
             {blogCategories.map((category, index) => (
               <GridItem key={index} colSpan={1}>
                 <Button
@@ -101,6 +111,17 @@ const Blogs = () => {
         h={'100%'}
       >
         <Heading textAlign={['center', 'left']}>In Partnership With</Heading>
+        <Stack
+          direction={['column', 'row']}
+          justifyContent={'space-evenly'}
+          mt={[2, 4]}
+        >
+          <Image src={partnership1} />
+          <Image src={partnership2} />
+          <Image src={partnership3} />
+          <Image src={partnership4} />
+          <Image src={partnership5} />
+        </Stack>
       </Stack>
     </>
   );

@@ -50,7 +50,7 @@ const VerifyCode = ({ email }) => {
       <Box
         bg="white"
         p={8}
-        w={'md'}
+        w={['auto', 'md']}
         marginInline={'auto'}
         borderRadius={'20px'}
       >

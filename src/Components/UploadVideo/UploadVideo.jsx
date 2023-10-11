@@ -51,10 +51,12 @@ const UploadVideo = () => {
           marginInline={'auto'}
           mt={[4, 8]}
           borderRadius={'20px'}
+          alignItems={'center'}
+          justifyContent={'center'}
         >
-          <InputGroup alignItems={'center'}>
+          <InputGroup alignItems={'center'} marginInline={'auto'}>
             <InputLeftElement
-              ml={6}
+              ml={-2}
               mt={2}
               pointerEvents="none"
               color={'white'}
@@ -70,6 +72,7 @@ const UploadVideo = () => {
               ml={8}
               value={videoLink}
               onChange={handleVideoLinkChange}
+              marginInline={'auto'}
             />
             <InputRightElement width={['8rem', '8rem']}>
               <Button
