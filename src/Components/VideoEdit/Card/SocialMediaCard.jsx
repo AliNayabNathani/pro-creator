@@ -12,6 +12,7 @@ import { AiOutlineClockCircle, BiMagicWand, FaRegCopy } from 'react-icons/all';
 
 const SocialMediaCard = ({ data }) => {
   const { title, content } = data;
+  const formattedContent = content.replace(/\n/g, '<br>');
   return (
     <Stack direction={['column', 'column']} mt={4}>
       <Stack bg={'white'} p={[4, 8]} borderRadius={'lg'}>
@@ -34,7 +35,8 @@ const SocialMediaCard = ({ data }) => {
             </Button>
           </HStack>
         </HStack>
-        <Text mt={4}>{content}</Text>
+        {/* <Text mt={4}>{content}</Text> */}
+        <Text mt={4} dangerouslySetInnerHTML={{ __html: formattedContent }} />
       </Stack>
     </Stack>
   );
