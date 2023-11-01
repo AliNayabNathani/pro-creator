@@ -1,6 +1,6 @@
-import { Button, Icon, Input, Stack, VStack } from '@chakra-ui/react';
+import { Button, Input, Stack, VStack } from '@chakra-ui/react';
 import React from 'react';
-import { FaWandMagicSparkles } from 'react-icons/fa';
+// import { FaWandMagicSparkles } from 'react-icons/fa';
 
 const Visuals = () => {
   return (

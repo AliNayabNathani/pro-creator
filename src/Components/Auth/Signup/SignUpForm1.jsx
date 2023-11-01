@@ -25,9 +25,14 @@ import { Link } from 'react-router-dom';
 import Login from '../Login/Login';
 import SignUpLogo from '../../../Assests/images/SignUpLogo.png';
 
-const SignUpForm1 = ({ onNextClick }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const SignUpForm1 = ({
+  onNextClick,
+  onInputChange,
+  firstName,
+  lastName,
+  email,
+  password,
+}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
   const handleSignup = () => {
@@ -40,16 +45,22 @@ const SignUpForm1 = ({ onNextClick }) => {
         <Stack spacing={4} mt={4}>
           <Stack direction="row" spacing={4}>
             <Input
+              name="firstName"
               placeholder="First Name"
               borderRadius="10px"
               size="lg"
               variant="filled"
+              value={firstName}
+              onChange={onInputChange}
             />
             <Input
+              name="lastName"
               placeholder="Last Name"
               borderRadius="10px"
               size="lg"
               variant="filled"
+              value={lastName}
+              onChange={onInputChange}
             />
           </Stack>
           <InputGroup>
@@ -57,13 +68,14 @@ const SignUpForm1 = ({ onNextClick }) => {
               <AiOutlineMail color="gray.300" />
             </InputLeftElement>
             <Input
+              name="email"
               type="email"
               placeholder="Email"
               borderRadius="10px"
               size="lg"
               variant="filled"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={onInputChange}
             />
           </InputGroup>
           <InputGroup>
@@ -71,13 +83,14 @@ const SignUpForm1 = ({ onNextClick }) => {
               <AiOutlineLock color="gray.300" />
             </InputLeftElement>
             <Input
+              name="password"
               type={showPassword ? 'text' : 'password'}
               placeholder="Password"
               borderRadius="10px"
               size="lg"
               variant="filled"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={onInputChange}
             />
             <InputRightElement width="3rem" mt={1} ml={2}>
               <Button

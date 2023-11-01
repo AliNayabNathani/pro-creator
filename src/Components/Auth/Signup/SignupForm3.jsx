@@ -11,15 +11,14 @@ const organizationSizeOptions = [
   'More than 1000 Employees',
 ];
 
-const SignupForm3 = ({ onBackClick, onNextClick, currentStep, totalSteps }) => {
-  const [selectedOrganizationSize, setSelectedOrganizationSize] =
-    useState(null);
-
-  const handleOrganizationSizeSelection = size => {
-    console.log('Selected Organization Size:', size);
-    setSelectedOrganizationSize(size);
-  };
-
+const SignupForm3 = ({
+  onBackClick,
+  onNextClick,
+  currentStep,
+  totalSteps,
+  onInputChange,
+  selectedOrganizationSize,
+}) => {
   return (
     <>
       <Stack direction="row" align="center" spacing={2} mb={4}>
@@ -37,7 +36,11 @@ const SignupForm3 = ({ onBackClick, onNextClick, currentStep, totalSteps }) => {
           {organizationSizeOptions.map((size, index) => (
             <Button
               key={index}
-              onClick={() => handleOrganizationSizeSelection(size)}
+              onClick={() =>
+                onInputChange({
+                  target: { name: 'selectedOrganizationSize', value: size },
+                })
+              }
               size="lg"
               variant="outline"
               borderRadius="10px"

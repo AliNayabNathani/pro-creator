@@ -3,7 +3,7 @@ import { Button, HStack, Heading, Stack } from '@chakra-ui/react';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 
-const organizationSizeOptions = [
+const Professions = [
   'Content Creator',
   'Teacher, Instructor, Coach',
   'Marketer',
@@ -11,15 +11,24 @@ const organizationSizeOptions = [
   'Other',
 ];
 
-const SignupForm4 = ({ onBackClick, onNextClick, currentStep, totalSteps }) => {
-  const [selectedOrganizationSize, setSelectedOrganizationSize] =
-    useState(null);
+const SignupForm4 = ({
+  onBackClick,
+  onNextClick,
+  currentStep,
+  totalSteps,
+  onInputChange,
+  describeProfession,
+  onSubmit,
+}) => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleOrganizationSizeSelection = size => {
-    console.log('Selected Organization Size:', size);
-    setSelectedOrganizationSize(size);
+  const handleSubmit = () => {
+    setIsSubmitted(true);
+
+    if (onSubmit) {
+      onSubmit();
+    }
   };
-
   return (
     <>
       <Stack direction="row" align="center" spacing={2} mb={4}>
@@ -34,17 +43,19 @@ const SignupForm4 = ({ onBackClick, onNextClick, currentStep, totalSteps }) => {
           How Would you describe yourself professionally?
         </Heading>
         <Stack direction="row" flexWrap="wrap" spacing={4}>
-          {organizationSizeOptions.map((size, index) => (
+          {Professions.map((size, index) => (
             <Button
               key={index}
-              onClick={() => handleOrganizationSizeSelection(size)}
+              onClick={() =>
+                onInputChange({
+                  target: { name: 'describeProfession', value: size },
+                })
+              }
               size="lg"
               variant="outline"
               borderRadius="10px"
               borderWidth={1}
-              borderColor={
-                selectedOrganizationSize === size ? '#FF5757' : '#D9D9D9'
-              }
+              borderColor={describeProfession === size ? '#FF5757' : '#D9D9D9'}
               color={'#898989'}
             >
               {size}
@@ -72,7 +83,7 @@ const SignupForm4 = ({ onBackClick, onNextClick, currentStep, totalSteps }) => {
           color={'white'}
           borderRadius={'full'}
           size={'lg'}
-          onClick={onNextClick}
+          onClick={handleSubmit}
         >
           Submit
         </Button>

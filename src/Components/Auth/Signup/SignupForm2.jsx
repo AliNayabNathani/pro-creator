@@ -11,14 +11,14 @@ const goalOptions = [
   'Other',
 ];
 
-const SignupForm2 = ({ onBackClick, onNextClick, currentStep, totalSteps }) => {
-  const [selectedGoal, setSelectedGoal] = useState(null);
-
-  const handleGoalSelection = selectedGoal => {
-    console.log('Selected Goal:', selectedGoal);
-    setSelectedGoal(selectedGoal);
-  };
-
+const SignupForm2 = ({
+  onBackClick,
+  onNextClick,
+  currentStep,
+  totalSteps,
+  onInputChange,
+  selectedGoal,
+}) => {
   return (
     <>
       <Stack direction={['column', 'row']} align="center" spacing={2} mb={4}>
@@ -40,7 +40,9 @@ const SignupForm2 = ({ onBackClick, onNextClick, currentStep, totalSteps }) => {
           {goalOptions.map((goal, index) => (
             <Button
               key={index}
-              onClick={() => handleGoalSelection(goal)}
+              onClick={() =>
+                onInputChange({ target: { name: 'selectedGoal', value: goal } })
+              }
               size={['xs', 'lg']}
               variant="outline"
               borderRadius={['2px', '10px']}
