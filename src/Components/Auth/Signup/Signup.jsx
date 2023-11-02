@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Stack, Container, useToast } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Login from '../Login/Login';
 import SignupForm2 from './SignupForm2';
 import SignupForm3 from './SignupForm3';
@@ -27,7 +27,23 @@ const Signup = () => {
   const { loading, message, error } = useSelector(state => state.user);
   const [currentStep, setCurrentStep] = useState(0);
   const totalSteps = 3;
-  console.log(formData);
+  const navigate = useNavigate();
+  // console.log(formData);
+
+  //generating random string function of any length for namira api
+  const generateRandomString = length => {
+    const characters =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      result += characters.charAt(randomIndex);
+    }
+
+    return result;
+  };
+
   const handleBackButtonClick = () => {
     if (currentStep > 0) {
       setCurrentStep(prevStep => prevStep - 1);
@@ -64,6 +80,22 @@ const Signup = () => {
         isClosable: true,
       });
       dispatch({ type: 'clearMessage' });
+      const randomString = generateRandomString(10);
+
+      //api call idhar banani
+      const sendLink = async randomString => {
+        try {
+          const response = await axios.post(`${server}/user/${randomString}`, {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+          const data = await response.json();
+          // console.log('DATA:', data);
+        } catch (error) {
+          console.error('Error fetching goals:', error);
+        }
+      };
     } else if (error) {
       toast({
         title: 'Registration Failed',
