@@ -23,7 +23,6 @@ const Signup = () => {
     selectedOrganizationSize: null,
     describeProfession: null,
   });
-
   const toast = useToast();
   const dispatch = useDispatch();
   const { loading, message, error } = useSelector(state => state.user);
@@ -82,21 +81,26 @@ const Signup = () => {
         isClosable: true,
       });
       dispatch({ type: 'clearMessage' });
-      const randomString = generateRandomString(10);
+      const uni_code = generateRandomString(10);
 
       //api call idhar banani
       const sendLink = async randomString => {
         try {
-          const response = await axios.post(`${server}/user/${randomString}`, {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          });
+          const response = await axios.post(
+            `${server}/user/otp_verf`,
+            { email, uni_code },
+            {
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          );
           const data = await response.json();
           // console.log('DATA:', data);
         } catch (error) {
           console.error('Error fetching goals:', error);
         }
+        sendLink();
       };
     } else if (error) {
       toast({
