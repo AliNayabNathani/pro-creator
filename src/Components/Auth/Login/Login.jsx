@@ -20,6 +20,7 @@ import {
   ModalOverlay,
   Stack,
   Text,
+  useToast,
 } from '@chakra-ui/react';
 import {
   AiOutlineMail,
@@ -31,17 +32,54 @@ import {
 } from 'react-icons/ai';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useNavigate } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../../redux/actions/user';
+import { useEffect } from 'react';
 
 const Login = ({ isOpen, onClose }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const handleLogin = () => {
-    console.log('Logging in...');
+  const dispatch = useDispatch();
+  const toast = useToast();
+  const { loading, message, error, isAuthenticated, user } = useSelector(
+    state => state.user
+  );
+
+  const handleLogin = e => {
+    // e.preventDefault();
+    dispatch(login(email, password));
   };
 
-  const handleLoginWithGoogle = () => {
+  useEffect(() => {
+    if (error) {
+      toast({
+        title: 'Login Failed',
+        description: error,
+        position: 'top',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+      dispatch({ type: 'clearError' });
+    }
+    if (message && isAuthenticated) {
+      navigate('/update-profile');
+      toast({
+        title: 'Login Successful!',
+        description: `Welcome Back ${user.name}`,
+        position: 'top',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+      });
+      dispatch({ type: 'clearMessage' });
+    }
+  }, [dispatch, error, message]);
+
+  const handleLoginWithGoogle = e => {
+    e.preventDefault();
     console.log('Logging in with Google...');
   };
 
@@ -84,8 +122,8 @@ const Login = ({ isOpen, onClose }) => {
                   <AiOutlineMail color="gray.300" />
                 </InputLeftElement>
                 <Input
-                  type="email"
-                  placeholder="Enter your email"
+                  type="text"
+                  placeholder="Enter your username"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                   focusBorderColor="black"

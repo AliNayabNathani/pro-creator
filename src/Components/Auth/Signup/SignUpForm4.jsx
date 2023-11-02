@@ -18,6 +18,7 @@ const SignupForm4 = ({
   totalSteps,
   onInputChange,
   describeProfession,
+  loading,
   onSubmit,
 }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -103,6 +104,7 @@ const SignupForm4 = ({
           color={'white'}
           borderRadius={'full'}
           size={'lg'}
+          // isLoading={loading}
           onClick={handleSubmit}
         >
           Submit

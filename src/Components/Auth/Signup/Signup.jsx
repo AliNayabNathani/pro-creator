@@ -24,7 +24,7 @@ const Signup = () => {
 
   const toast = useToast();
   const dispatch = useDispatch();
-  const { loading, message } = useSelector(state => state.user);
+  const { loading, message, error } = useSelector(state => state.user);
   const [currentStep, setCurrentStep] = useState(0);
   const totalSteps = 3;
   console.log(formData);
@@ -53,17 +53,29 @@ const Signup = () => {
     dispatch(registerUser(formData));
   };
 
-  // useEffect(() => {
-  //   if () {
-  //     toast({
-  //       title: 'Registration Successful!',
-  //       description: message || 'Welcome to our platform!',
-  //       status: 'success',
-  //       duration: 5000,
-  //       isClosable: true,
-  //     });
-  //   }
-  // }, [isAuthenticated, message]);
+  useEffect(() => {
+    if (message) {
+      toast({
+        title: 'Registration Successful!',
+        description: message,
+        position: 'top',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+      });
+      dispatch({ type: 'clearMessage' });
+    } else if (error) {
+      toast({
+        title: 'Registration Failed',
+        description: 'An error occurred during registration.',
+        position: 'top',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+      dispatch({ type: 'clearError' });
+    }
+  }, [loading, message, error, toast]);
 
   return (
     <Container
@@ -121,6 +133,7 @@ const Signup = () => {
               onNextClick={handleNextButtonClick}
               currentStep={currentStep}
               totalSteps={totalSteps}
+              loading={loading}
               onSubmit={handleFormSubmit}
             />
           </Stack>

@@ -25,11 +25,23 @@ import Subscription from './Components/Subscription/Subscription';
 import UpdateProfile from './Components/UpdateProfile/UpdateProfile';
 import HallOfFame from './Components/HallOfFame/HallOfFame';
 import NotFound from './Components/NotFound/NotFound';
+import { useDispatch, useSelector } from 'react-redux';
+import PrivateRoute from './Utils/PrivateRoute';
 
 function App() {
+  const dispatch = useDispatch();
+
+  window.addEventListener('contextmenu', e => {
+    e.preventDefault();
+  });
+
+  const { isAuthenticated, user, message, error } = useSelector(
+    state => state.user
+  );
+
   const renderHeader = element => (
     <>
-      <Header />
+      <Header isAuthenticated={isAuthenticated} />
       {element}
     </>
   );
@@ -41,6 +53,10 @@ function App() {
         <Route path="/who" element={renderHeader(<WhoUses />)} />
         <Route path="/pricing" element={renderHeader(<PricingAndFaq />)} />
         <Route path="/blogs" element={renderHeader(<Blogs />)} />
+        {/* <Route
+          path="/blogs"
+          element={<PrivateRoute>{renderHeader(<Blogs />)}</PrivateRoute>}
+        /> */}
         <Route path="/blog/:id" element={renderHeader(<BlogDetail />)} />
         <Route path="/verify" element={renderHeader(<VerifyCode />)} />
         <Route path="/signup" element={renderHeader(<Signup />)} />
@@ -60,9 +76,15 @@ function App() {
           element={renderHeader(<ShortVideoFeatures />)}
         />
         <Route path="/subscription" element={renderHeader(<Subscription />)} />
-        <Route
+        {/* <Route
           path="/update-profile"
           element={renderHeader(<UpdateProfile />)}
+        /> */}
+        <Route
+          path="/update-profile"
+          element={
+            <PrivateRoute>{renderHeader(<UpdateProfile />)}</PrivateRoute>
+          }
         />
         <Route path="/hall-of-fame" element={renderHeader(<HallOfFame />)} />
 

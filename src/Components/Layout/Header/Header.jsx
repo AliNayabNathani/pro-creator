@@ -26,6 +26,7 @@ import { ColorModeSwitcher } from '../../../ColorModeSwitcher';
 import Login from '../../Auth/Login/Login';
 import whiteHeaderLogo from '../../../Assests/images/whiteHeaderLogo.png';
 import { useLocation } from 'react-router';
+import { useDispatch } from 'react-redux';
 
 const NAV_ITEMS = [
   {
@@ -34,7 +35,6 @@ const NAV_ITEMS = [
   },
   {
     label: 'Features',
-    href: '#',
     children: [
       {
         label: 'Script Features',
@@ -52,9 +52,15 @@ const NAV_ITEMS = [
   },
 ];
 
-const Header = () => {
+const Header = ({ isAuthenticated }) => {
+  console.log('IsAuth', isAuthenticated);
   const { isOpen, onToggle } = useDisclosure();
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
+  const dispatch = useDispatch();
+  const handleLogout = e => {
+    // e.preventDefault();
+    dispatch({ type: 'logoutSuccess' });
+  };
   return (
     <Box>
       <Flex
@@ -117,26 +123,49 @@ const Header = () => {
           >
             Free Trail
           </Button>
-          <Button
-            as={'a'}
-            display={{ base: 'none', md: 'inline-flex' }}
-            fontSize={'md'}
-            fontWeight={600}
-            color={'black'}
-            bg={'transparent'}
-            href={'#'}
-            _hover={{
-              bg: 'black',
-              color: 'white',
-            }}
-            border={'1px solid black'}
-            borderRadius={'full'}
-            padding={{ base: '2', md: '4' }}
-            minW={{ base: '80px', md: '120px' }}
-            onClick={() => setLoginModalOpen(true)}
-          >
-            Login
-          </Button>
+          {isAuthenticated ? (
+            <Button
+              as={'a'}
+              display={{ base: 'none', md: 'inline-flex' }}
+              fontSize={'md'}
+              fontWeight={600}
+              color={'black'}
+              bg={'transparent'}
+              href={'#'}
+              _hover={{
+                bg: 'black',
+                color: 'white',
+              }}
+              border={'1px solid black'}
+              borderRadius={'full'}
+              padding={{ base: '2', md: '4' }}
+              minW={{ base: '80px', md: '120px' }}
+              onClick={handleLogout}
+            >
+              Logout
+            </Button>
+          ) : (
+            <Button
+              as={'a'}
+              display={{ base: 'none', md: 'inline-flex' }}
+              fontSize={'md'}
+              fontWeight={600}
+              color={'black'}
+              bg={'transparent'}
+              href={'#'}
+              _hover={{
+                bg: 'black',
+                color: 'white',
+              }}
+              border={'1px solid black'}
+              borderRadius={'full'}
+              padding={{ base: '2', md: '4' }}
+              minW={{ base: '80px', md: '120px' }}
+              onClick={() => setLoginModalOpen(true)}
+            >
+              Login
+            </Button>
+          )}
           <Login
             isOpen={isLoginModalOpen}
             onClose={() => setLoginModalOpen(false)}
