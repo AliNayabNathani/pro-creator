@@ -5,9 +5,7 @@ export const registerUser = formData => async dispatch => {
   try {
     dispatch({ type: 'registerRequest' });
 
-    const response = await axios.post(`${server}/user/register`, formData, {
-      withCredentials: true,
-    });
+    const response = await axios.post(`${server}/user/register`, formData);
 
     dispatch({
       type: 'registerSuccess',

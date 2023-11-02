@@ -30,9 +30,11 @@ const SignUpForm1 = ({
   onInputChange,
   firstName,
   lastName,
+  username,
   email,
   password,
 }) => {
+  console.log('username');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
   const handleSignup = () => {
@@ -63,6 +65,18 @@ const SignUpForm1 = ({
               onChange={onInputChange}
             />
           </Stack>
+
+          <Input
+            name="username"
+            type="text"
+            placeholder="Username"
+            borderRadius="10px"
+            size="lg"
+            variant="filled"
+            value={username}
+            onChange={onInputChange}
+          />
+
           <InputGroup>
             <InputLeftElement pointerEvents="none" mt={1} ml={2}>
               <AiOutlineMail color="gray.300" />

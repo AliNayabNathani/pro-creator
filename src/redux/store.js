@@ -23,4 +23,4 @@ export const store = configureStore({
 export const persistor = persistStore(store);
 
 export default store;
-export const server = '192.168.18.39:8000/api';
+export const server = 'https://nameera.pythonanywhere.com/api';

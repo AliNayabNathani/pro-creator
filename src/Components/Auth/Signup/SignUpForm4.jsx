@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, HStack, Heading, Stack } from '@chakra-ui/react';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 
-const Professions = [
-  'Content Creator',
-  'Teacher, Instructor, Coach',
-  'Marketer',
-  'Sales Professional',
-  'Other',
-];
+// const Professions = [
+//   'Content Creator',
+//   'Teacher, Instructor, Coach',
+//   'Marketer',
+//   'Sales Professional',
+//   'Other',
+// ];
 
 const SignupForm4 = ({
   onBackClick,
@@ -21,6 +21,7 @@ const SignupForm4 = ({
   onSubmit,
 }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [Professions, setProfessions] = useState([]);
 
   const handleSubmit = () => {
     setIsSubmitted(true);
@@ -29,6 +30,23 @@ const SignupForm4 = ({
       onSubmit();
     }
   };
+
+  useEffect(() => {
+    const fetchProf = async () => {
+      try {
+        const response = await fetch(
+          'https://nameera.pythonanywhere.com/api/user/prof/'
+        );
+        const data = await response.json();
+        setProfessions(data);
+        console.log('DATA:', data);
+      } catch (error) {
+        console.error('Error fetching goals:', error);
+      }
+    };
+
+    fetchProf();
+  }, []);
   return (
     <>
       <Stack direction="row" align="center" spacing={2} mb={4}>
@@ -48,17 +66,19 @@ const SignupForm4 = ({
               key={index}
               onClick={() =>
                 onInputChange({
-                  target: { name: 'describeProfession', value: size },
+                  target: { name: 'describeProfession', value: size.id },
                 })
               }
               size="lg"
               variant="outline"
               borderRadius="10px"
               borderWidth={1}
-              borderColor={describeProfession === size ? '#FF5757' : '#D9D9D9'}
+              borderColor={
+                describeProfession === size.id ? '#FF5757' : '#D9D9D9'
+              }
               color={'#898989'}
             >
-              {size}
+              {size.prof}
             </Button>
           ))}
         </Stack>

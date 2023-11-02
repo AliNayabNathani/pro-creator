@@ -14,20 +14,20 @@ const Signup = () => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
+    username: '',
     email: '',
     password: '',
     selectedGoal: null,
     selectedOrganizationSize: null,
     describeProfession: null,
   });
+
   const toast = useToast();
   const dispatch = useDispatch();
-  const { loading, isAuthenticated, user, message } = useSelector(
-    state => state.user
-  );
+  const { loading, message } = useSelector(state => state.user);
   const [currentStep, setCurrentStep] = useState(0);
   const totalSteps = 3;
-
+  console.log(formData);
   const handleBackButtonClick = () => {
     if (currentStep > 0) {
       setCurrentStep(prevStep => prevStep - 1);
@@ -53,17 +53,17 @@ const Signup = () => {
     dispatch(registerUser(formData));
   };
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      toast({
-        title: 'Registration Successful!',
-        description: message || 'Welcome to our platform!',
-        status: 'success',
-        duration: 5000,
-        isClosable: true,
-      });
-    }
-  }, [isAuthenticated, message]);
+  // useEffect(() => {
+  //   if () {
+  //     toast({
+  //       title: 'Registration Successful!',
+  //       description: message || 'Welcome to our platform!',
+  //       status: 'success',
+  //       duration: 5000,
+  //       isClosable: true,
+  //     });
+  //   }
+  // }, [isAuthenticated, message]);
 
   return (
     <Container

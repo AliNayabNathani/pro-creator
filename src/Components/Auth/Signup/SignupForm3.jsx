@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, HStack, Heading, Stack } from '@chakra-ui/react';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 
 const organizationSizeOptions = [
-  'Solo',
-  '2 - 10 Employees',
-  '11 - 100 Employees',
-  '101 - 1000 Employees',
-  'More than 1000 Employees',
+  {
+    id: 1,
+    org: '2 - 10 Employees',
+  },
 ];
 
 const SignupForm3 = ({
@@ -19,6 +18,24 @@ const SignupForm3 = ({
   onInputChange,
   selectedOrganizationSize,
 }) => {
+  // const [organizationSizeOptions, setOrganizationSizeOptions] = useState([]);
+
+  // useEffect(() => {
+  //   const fetchOrg = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         'https://nameera.pythonanywhere.com/api/user/org/'
+  //       );
+  //       const data = await response.json();
+  //       setOrganizationSizeOptions(data);
+  //     } catch (error) {
+  //       console.error('Error fetching goals:', error);
+  //     }
+  //   };
+
+  //   fetchOrg();
+  // }, []);
+
   return (
     <>
       <Stack direction="row" align="center" spacing={2} mb={4}>
@@ -38,7 +55,7 @@ const SignupForm3 = ({
               key={index}
               onClick={() =>
                 onInputChange({
-                  target: { name: 'selectedOrganizationSize', value: size },
+                  target: { name: 'selectedOrganizationSize', value: size.id },
                 })
               }
               size="lg"
@@ -46,11 +63,11 @@ const SignupForm3 = ({
               borderRadius="10px"
               borderWidth={1}
               borderColor={
-                selectedOrganizationSize === size ? '#FF5757' : '#D9D9D9'
+                selectedOrganizationSize === size.id ? '#FF5757' : '#D9D9D9'
               }
               color={'#898989'}
             >
-              {size}
+              {size.org}
             </Button>
           ))}
         </Stack>

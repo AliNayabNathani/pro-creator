@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Heading, Stack, HStack } from '@chakra-ui/react';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
@@ -19,6 +19,25 @@ const SignupForm2 = ({
   onInputChange,
   selectedGoal,
 }) => {
+  const [goalOptions, setGoalOptions] = useState([]);
+
+  useEffect(() => {
+    const fetchGoals = async () => {
+      try {
+        const response = await fetch(
+          'https://nameera.pythonanywhere.com/api/user/goals/'
+        );
+        const data = await response.json();
+        setGoalOptions(data);
+        // console.log('DATA:', data);
+      } catch (error) {
+        console.error('Error fetching goals:', error);
+      }
+    };
+
+    fetchGoals();
+  }, []);
+
   return (
     <>
       <Stack direction={['column', 'row']} align="center" spacing={2} mb={4}>
@@ -41,16 +60,18 @@ const SignupForm2 = ({
             <Button
               key={index}
               onClick={() =>
-                onInputChange({ target: { name: 'selectedGoal', value: goal } })
+                onInputChange({
+                  target: { name: 'selectedGoal', value: goal.id },
+                })
               }
               size={['xs', 'lg']}
               variant="outline"
               borderRadius={['2px', '10px']}
               borderWidth={1}
-              borderColor={selectedGoal === goal ? '#FF5757' : '#D9D9D9'}
+              borderColor={selectedGoal === goal.id ? '#FF5757' : '#D9D9D9'}
               color={'#898989'}
             >
-              {goal}
+              {goal.goals}
             </Button>
           ))}
         </Stack>
