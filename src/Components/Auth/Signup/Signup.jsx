@@ -9,6 +9,8 @@ import SignUpForm1 from './SignUpForm1';
 import authBg from '../../../Assests/images/authBg.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../../../redux/actions/user';
+import axios from 'axios';
+import { server } from '../../../redux/store';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
