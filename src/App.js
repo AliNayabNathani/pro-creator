@@ -58,7 +58,10 @@ function App() {
           element={<PrivateRoute>{renderHeader(<Blogs />)}</PrivateRoute>}
         /> */}
         <Route path="/blog/:id" element={renderHeader(<BlogDetail />)} />
-        <Route path="/verify/:id" element={renderHeader(<VerifyCode />)} />
+        <Route
+          path="/verify/:code/:unicode"
+          element={renderHeader(<VerifyCode />)}
+        />
         <Route path="/signup" element={renderHeader(<Signup />)} />
         <Route path="/uploadvideo" element={renderHeader(<UploadVideo />)} />
         <Route path="/create-team" element={renderHeader(<CreateTeam />)} />

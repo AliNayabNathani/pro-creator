@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import authBg from '../../../Assests/images/authBg.png';
+import { useParams } from 'react-router';
 const formatTime = seconds => {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
@@ -20,24 +21,33 @@ const formatTime = seconds => {
 
 const VerifyCode = ({ email }) => {
   const [verificationCode, setVerificationCode] = useState('');
-  const [timer, setTimer] = useState(300);
-
+  const params = useParams();
+  
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTimer(prevTimer => (prevTimer > 0 ? prevTimer - 1 : 0));
-    }, 1000);
+    const sendCode = async () => {
+      try {
+        const response = await axios.post(`${server}/user/otp_verf`, , {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+      } catch (error) {
+        console.error('Error fetching goals:', error);
+      }
+    };
 
-    return () => clearInterval(interval);
+    sendCode();
   }, []);
 
-  const handleVerificationSubmit = () => {
-    console.log('Verification code submitted:', verificationCode);
-  };
+  // const handleVerificationSubmit = () => {
+  //   console.log('Verification code submitted:', verificationCode);
+  // };
 
-  const handleResendCode = () => {
-    console.log('Resending verification code...');
-    setTimer(300);
-  };
+  // const handleResendCode = () => {
+  //   console.log('Resending verification code...');
+  //   setTimer(300);
+  // };
 
   return (
     <Container
@@ -63,53 +73,13 @@ const VerifyCode = ({ email }) => {
         </Stack>
         <Stack p={8}>
           <Heading fontSize={'xl'} textAlign={'center'}>
-            Verification Your Email
+            Verifying Your Email
           </Heading>
           <Text fontWeight={'semibold'} textAlign={'center'} color={'#D9D9D9'}>
             A Verification code has been sent to {email}
           </Text>
         </Stack>
-        <Stack direction="row" spacing={2} mb={4}>
-          {Array.from({ length: 5 }, (_, index) => (
-            <Input
-              key={index}
-              value={verificationCode[index] || ''}
-              onChange={e => {
-                const updatedCode = [...verificationCode];
-                updatedCode[index] = e.target.value;
-                setVerificationCode(updatedCode);
-              }}
-              maxLength={1}
-              textAlign="center"
-              fontSize="2xl"
-              fontWeight="bold"
-              borderColor="#D9D9D9"
-              borderBottom="2px solid #D9D9D9"
-              color="black"
-              bg="transparent"
-              focusBorderColor="#D9D9D9"
-            />
-          ))}
-        </Stack>
-        <Text textAlign="center" fontWeight="bold" fontSize="lg">
-          {formatTime(timer)}
-        </Text>
-        <Stack alignItems="center" mb={6}>
-          <Button
-            variant="solid"
-            mt={6}
-            bg={'#FF5757'}
-            color={'white'}
-            borderRadius={'full'}
-            _hover={{
-              bg: '#E04141',
-            }}
-            onClick={handleVerificationSubmit}
-            isDisabled={verificationCode.length !== 5}
-          >
-            Verify
-          </Button>
-        </Stack>
+
         <Stack direction="column" justify="space-between" alignItems="center">
           <Text fontSize="sm">Didn't Receive Code?</Text>
           <Button
